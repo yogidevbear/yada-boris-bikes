@@ -64,10 +64,10 @@
 (def svr
   (yada/listener
     ["/" [["boris-bikes" (yada/resource
-            {:access-control
-             {:scheme :cookie
-              :cookie "session"
-              :verify (fn [cookie] …}}
+            ; {:access-control
+            ;  {:scheme :cookie
+            ;   :cookie "session"
+            ;   :verify (fn [cookie] …}}
             {:methods
              {:get
               {:produces "application/json"
