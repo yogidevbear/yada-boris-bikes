@@ -9,17 +9,14 @@
 (def leyton-orient-fc {:lat 51.5601M :lon -0.012551M})
 
 (defn ensure-positive
-  "Takes a number.
-   If negative, converts it to positive equivalent and returns.
-   Otherwise, returns the original number."
+  "Takes a number. If negative, converts it to positive equivalent and returns. Otherwise, returns the original number."
    [x]
    (if (< x 0)
      (- x)
      x))
 
 (defn get-hypotenuse-squared
-  "Returns the square of the hypotenuse of a right angle triangle
-   formed from two different latitudes and longitudes."
+  "Returns the square of the hypotenuse of a right angle triangle formed from two different latitudes and longitudes."
   [lat1 lat2 lon1 lon2]
   (let [lat-diff (ensure-positive (- lat1 lat2))
         lon-diff (ensure-positive (- lon1 lon2))]
@@ -33,6 +30,7 @@
                  :key-fn #(keyword %)))
 
 (defn get-closest-leyton-bike-points
+  "Returns the 5 closest bike points to a given starting latitude/longitude point."
   [lat lon]
   (->> (slurp-bike-points)
        (map #(assoc %
@@ -47,6 +45,7 @@
     {:user "Jon" :password "open-says-me"}})
 
 (defn valid-user
+  "Checks a username and password against the fake user data above."
   [user password]
   (contains? fake-users {:user user :password password}))
 
