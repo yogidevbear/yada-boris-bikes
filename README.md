@@ -10,7 +10,7 @@ To stop the server, either run `((:close svr))` from the REPL or simply exit the
 
 ## License
 
-Copyright © 2018 FIXME
+Copyright © 2018 Andrew Jackson
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
