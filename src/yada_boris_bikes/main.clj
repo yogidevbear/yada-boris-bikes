@@ -4,7 +4,6 @@
             [buddy.sign.jwt :as jwt]
             [schema.core :as s]
             [hiccup.core :refer [html]]
-            ;[clj-http.client :as client]
             [clojure.data.json :as json]))
 
 (def leyton-orient-fc {:lat 51.5601M :lon -0.012551M})
@@ -32,7 +31,6 @@
   []
   (json/read-str (slurp "https://api.tfl.gov.uk/BikePoint")
                  :key-fn #(keyword %)))
-  ;(json/read-str (:body (client/get "https://api.tfl.gov.uk/BikePoint"))))
 
 (defn get-closest-leyton-bike-points
   [lat lon]
@@ -43,15 +41,6 @@
        (map #(into {} (for [[k v] (select-keys % [:id :url :commonName :lat :lon :h-sqr :available-bikes])] [(keyword k) v])))
        (sort-by :h-sqr)
        (take 5)))
-
-; (defn get-closest-leyton-bike-points
-;   [lat lon]
-;   (let [all-points (json/read-str (slurp "https://api.tfl.gov.uk/BikePoint"))
-;         all-points-cleaned (into [] (map #(into {}
-;                                             (for [[k v] (select-keys % ["id" "url" "commonName" "lat" "lon"])]
-;                                                  [(keyword k) v])))
-;                                       all-points)]
-;     all-points-cleaned))
 
 (def fake-users
   #{{:user "Andrew" :password "let-me-in"}
